@@ -1,0 +1,28 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cSpell.words": [
+        "allextracted",
+        "cdimascio",
+        "Configurer",
+        "DBKEY",
+        "Dotenv",
+        "Hanlder",
+        "ILLI",
+        "INDI",
+        "jdbc",
+        "jitpack",
+        "Jwts",
+        "MLNM",
+        "Nums",
+        "projectlombok",
+        "RECNUM",
+        "Servlet",
+        "springbootapp",
+        "springbootdb",
+        "springframework",
+        "Tika",
+        "Userservice",
+        "VSAM"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
+}

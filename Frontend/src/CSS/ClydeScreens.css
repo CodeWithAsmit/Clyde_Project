@@ -1,0 +1,41 @@
+.fade-slide-in
+{
+    animation: fadeSlideIn 0.6s ease-in-out;
+}
+  
+@keyframes fadeSlideIn
+{
+    from
+    {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to
+    {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bg-light .btn-success,
+.bg-light .btn-outline-warning,
+.bg-light .btn-info
+{
+    color: black;
+}
+
+.bg-light .form-control
+{
+    background-color: white !important;
+    color: black !important;
+}  
+
+.container-fluid .btn:hover,
+.container-fluid .btn:focus,
+.container-fluid .btn:active
+{
+    background-color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+    color: inherit !important;
+}

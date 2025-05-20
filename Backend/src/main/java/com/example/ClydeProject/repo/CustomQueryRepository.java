@@ -31,8 +31,6 @@ public class CustomQueryRepository
  
     public List<Long> findRecNumRec(String recNameTable, String wordsTable, List<String> lastWords)
     {
-        System.out.println("Last Words inside findRecNumRec: " + lastWords);
-
         if (!recNameTable.matches("\\w+") || !wordsTable.matches("\\w+"))
         {
             throw new IllegalArgumentException("Invalid table name");
@@ -56,11 +54,9 @@ public class CustomQueryRepository
         for (int i = 0; i < lastWords.size(); i++)
         {
             query.setParameter("word" + i, lastWords.get(i));
-            System.out.println("word" + i + ": " + lastWords.get(i));
         }
 
         query.setParameter("wordCount", lastWords.size());
-        System.out.println("wordCount: " + lastWords.size());
 
         @SuppressWarnings("unchecked")
         List<Number> result = query.getResultList();
@@ -68,13 +64,10 @@ public class CustomQueryRepository
         return result.stream()
              .map(Number::longValue)
              .collect(Collectors.toList());
-        //return query.getResultList();
     }
 
     public List<Map<String, Object>> displayMasterTable(String masterTable, String recNumTable, String wordTable, List<String> lastWords)
     {
-        System.out.println("Last Words inside displayMasterTable: " + lastWords);
-
         if (!masterTable.matches("\\w+") || !recNumTable.matches("\\w+") || !wordTable.matches("\\w+"))
         {
             throw new IllegalArgumentException("Invalid table name");

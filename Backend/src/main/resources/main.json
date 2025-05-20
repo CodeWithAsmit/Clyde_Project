@@ -1,6 +1,1028 @@
 {
   "configs": [
     {
+      "type": "MAP",
+      "name": "ACCT-STATUS",
+      "inputLength": 1,
+      "outputMaxLength": 8,
+      "count": 5,
+      "mappings": [
+        {
+          "key": "0",
+          "value": "Lve-Acct"
+        },
+        {
+          "key": "1",
+          "value": "Dscnnctd"
+        },
+        {
+          "key": "2",
+          "value": "F-bfre-T"
+        },
+        {
+          "key": "3",
+          "value": "Cnvrsion"
+        },
+        {
+          "key": "Z",
+          "value": "Unknown"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "ACCT-TYPE",
+      "inputLength": 1,
+      "outputMaxLength": 26,
+      "count": 14,
+      "mappings": [
+        {
+          "key": "A",
+          "value": "Announcement-Service-Bus"
+        },
+        {
+          "key": "B",
+          "value": "Business"
+        },
+        {
+          "key": "C",
+          "value": "Public-Coin-Comission"
+        },
+        {
+          "key": "D",
+          "value": "Dormitory-Service"
+        },
+        {
+          "key": "G",
+          "value": "Public-Coinless-NonCommis"
+        },
+        {
+          "key": "K",
+          "value": "Student-Toll-Account"
+        },
+        {
+          "key": "L",
+          "value": "Public-Coinless-Commission"
+        },
+        {
+          "key": "M",
+          "value": "Mobile"
+        },
+        {
+          "key": "N",
+          "value": "Public-Coin-Non-Commission"
+        },
+        {
+          "key": "P",
+          "value": "COCOT"
+        },
+        {
+          "key": "R",
+          "value": "Residence"
+        },
+        {
+          "key": "S",
+          "value": "Semi-Public-Coin"
+        },
+        {
+          "key": "W",
+          "value": "WATS"
+        },
+        {
+          "key": "Z",
+          "value": "???Invalid-Account-Type"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "NON-PUB",
+      "inputLength": 1,
+      "outputMaxLength": 10,
+      "count": 3,
+      "mappings": [
+        {
+          "key": "N",
+          "value": "Public"
+        },
+        {
+          "key": "Y",
+          "value": "Non-Public"
+        },
+        {
+          "key": "Z",
+          "value": "???Non-Pub"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "FINLIND",
+      "inputLength": 1,
+      "outputMaxLength": 19,
+      "count": 4,
+      "mappings": [
+        {
+          "key": "Z",
+          "value": "Live-Final"
+        },
+        {
+          "key": "0",
+          "value": "Live-Final"
+        },
+        {
+          "key": "1",
+          "value": "Written-or-Referred"
+        },
+        {
+          "key": "Z",
+          "value": "??Invalid-FINLIND"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "CASH-RECTYPE",
+      "inputLength": 1,
+      "outputMaxLength": 7,
+      "count": 9,
+      "mappings": [
+        {
+          "key": "1",
+          "value": "Regular"
+        },
+        {
+          "key": "2",
+          "value": "Advance"
+        },
+        {
+          "key": "3",
+          "value": "Deposit"
+        },
+        {
+          "key": "4",
+          "value": "NSF"
+        },
+        {
+          "key": "5",
+          "value": "AP-Live"
+        },
+        {
+          "key": "6",
+          "value": "APDP"
+        },
+        {
+          "key": "8",
+          "value": "CR-Adj"
+        },
+        {
+          "key": "9",
+          "value": "DB-Adj"
+        },
+        {
+          "key": "Z",
+          "value": "??ERROR"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "RESBUS",
+      "inputLength": 1,
+      "outputMaxLength": 20,
+      "count": 6,
+      "mappings": [
+        {
+          "key": "2",
+          "value": "Business"
+        },
+        {
+          "key": "3",
+          "value": "Coin"
+        },
+        {
+          "key": "4",
+          "value": "Mobile/not-cellular"
+        },
+        {
+          "key": "5",
+          "value": "Non-obt-coin"
+        },
+        {
+          "key": "1",
+          "value": "Residential"
+        },
+        {
+          "key": "Z",
+          "value": "ERROR-in-field"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "ARSTYPE",
+      "inputLength": 1,
+      "outputMaxLength": 10,
+      "count": 23,
+      "mappings": [
+        {
+          "key": "R",
+          "value": "Resident"
+        },
+        {
+          "key": "B",
+          "value": "Business"
+        },
+        {
+          "key": "C",
+          "value": "Coin"
+        },
+        {
+          "key": "M",
+          "value": "Mbl/Cllulr"
+        },
+        {
+          "key": "S",
+          "value": "Semipub"
+        },
+        {
+          "key": "P",
+          "value": "Public"
+        },
+        {
+          "key": "2",
+          "value": "Business"
+        },
+        {
+          "key": "3",
+          "value": "Coin"
+        },
+        {
+          "key": "4",
+          "value": "Non-cllulr"
+        },
+        {
+          "key": "5",
+          "value": "NonOBTcoin"
+        },
+        {
+          "key": "1",
+          "value": "Resident"
+        },
+        {
+          "key": "A",
+          "value": "CABS"
+        },
+        {
+          "key": "D",
+          "value": "PAGING"
+        },
+        {
+          "key": "E",
+          "value": "SCRTY_LINK"
+        },
+        {
+          "key": "F",
+          "value": "MILLENIUM"
+        },
+        {
+          "key": "G",
+          "value": "G_Not_Used"
+        },
+        {
+          "key": "H",
+          "value": "CB&C"
+        },
+        {
+          "key": "I",
+          "value": "ILAIS"
+        },
+        {
+          "key": "J",
+          "value": "RBS"
+        },
+        {
+          "key": "L",
+          "value": "LSB"
+        },
+        {
+          "key": "N",
+          "value": "NEW_MEDIA"
+        },
+        {
+          "key": "W",
+          "value": "WATS"
+        },
+        {
+          "key": "Z",
+          "value": "ERROR"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "ARSPUB",
+      "inputLength": 1,
+      "outputMaxLength": 9,
+      "count": 3,
+      "mappings": [
+        {
+          "key": "N",
+          "value": "Z"
+        },
+        {
+          "key": "Y",
+          "value": ">NON-pub<"
+        },
+        {
+          "key": "Z",
+          "value": "ERROR"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "PUB",
+      "inputLength": 1,
+      "outputMaxLength": 10,
+      "count": 2,
+      "mappings": [
+        {
+          "key": "Y",
+          "value": ">NON-pub<"
+        },
+        {
+          "key": "Z",
+          "value": "Z"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "LIVFIN",
+      "inputLength": 1,
+      "outputMaxLength": 10,
+      "count": 3,
+      "mappings": [
+        {
+          "key": "L",
+          "value": "Live"
+        },
+        {
+          "key": "F",
+          "value": "Final"
+        },
+        {
+          "key": "Z",
+          "value": "Error"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "STATE_ID",
+      "inputLength": 1,
+      "outputMaxLength": 4,
+      "count": 8,
+      "mappings": [
+        {
+          "key": "D",
+          "value": "AADS"
+        },
+        {
+          "key": "L",
+          "value": "ILLI"
+        },
+        {
+          "key": "M",
+          "value": "MICH"
+        },
+        {
+          "key": "N",
+          "value": "INDI"
+        },
+        {
+          "key": "O",
+          "value": "OHIO"
+        },
+        {
+          "key": "S",
+          "value": "AIS"
+        },
+        {
+          "key": "W",
+          "value": "WISC"
+        },
+        {
+          "key": "Z",
+          "value": "Z"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "PAY_REASON",
+      "inputLength": 2,
+      "outputMaxLength": 24,
+      "count": 65,
+      "mappings": [
+        {
+          "key": "00",
+          "value": "00_PYMNT_DLVRD"
+        },
+        {
+          "key": "01",
+          "value": "01_ARS_CNVRSN_STARTED"
+        },
+        {
+          "key": "02",
+          "value": "02_CNVRSN_ACIS_LIMBO"
+        },
+        {
+          "key": "03",
+          "value": "03_LIVE_IN_ACIS"
+        },
+        {
+          "key": "04",
+          "value": "04_CNVRSN_BACKED_OUT"
+        },
+        {
+          "key": "05",
+          "value": "05_NEVER_CNVRT_TO_ACIS"
+        },
+        {
+          "key": "06",
+          "value": "06_N-Prt;RFND;OTDB;UNID"
+        },
+        {
+          "key": "09",
+          "value": "09_WKND_PYMT_DLVRY_WRKDY"
+        },
+        {
+          "key": "10",
+          "value": "10_Ctch_Up_ARS_Nt_Cnvrtd"
+        },
+        {
+          "key": "11",
+          "value": "11_Ctch_Up_ARS_In_Cnvrsn"
+        },
+        {
+          "key": "12",
+          "value": "12_Catch_Up_ACIS_LIMBO"
+        },
+        {
+          "key": "13",
+          "value": "13_Catch_Up_Live_In_ACIS"
+        },
+        {
+          "key": "14",
+          "value": "14_Catch_Up_ARS_Backout"
+        },
+        {
+          "key": "15",
+          "value": "15_Ctch_Up_ARS_Nvr_Cnvrt"
+        },
+        {
+          "key": "19",
+          "value": "19_Wknd_Pymt_Dlvry_Wrkdy"
+        },
+        {
+          "key": "20",
+          "value": "20_Err_Corr_Nt_Cnvrtd"
+        },
+        {
+          "key": "21",
+          "value": "21_Err_Corr_In_Cnvrsn"
+        },
+        {
+          "key": "22",
+          "value": "22_Err_Corr_ACIS_Limbo"
+        },
+        {
+          "key": "23",
+          "value": "23_Err_Corr_Ln_In_ACIS"
+        },
+        {
+          "key": "24",
+          "value": "24_Err_Corr_ARS_Backout"
+        },
+        {
+          "key": "25",
+          "value": "25_Err_Corr_Never_Cnvrt"
+        },
+        {
+          "key": "29",
+          "value": "29_Wknd_Pymt_Dlvry_Wrkdy"
+        },
+        {
+          "key": "30",
+          "value": "30_Ctch_Up_Not_Cnvrtd"
+        },
+        {
+          "key": "31",
+          "value": "31_Ctch_Up_In_Cnvrsn"
+        },
+        {
+          "key": "32",
+          "value": "32_Ctch_Up_ACIS_LIMBO"
+        },
+        {
+          "key": "33",
+          "value": "33_Ctch_Up_Live_In_ACIS"
+        },
+        {
+          "key": "34",
+          "value": "34_Ctch_Up_Backout"
+        },
+        {
+          "key": "35",
+          "value": "35_Ctch_Up_Never_Cnvrt"
+        },
+        {
+          "key": "39",
+          "value": "39_Wknd_Pymt_Dlvry_Wrkdy"
+        },
+        {
+          "key": "40",
+          "value": "40_Undlvrble_NON_CRIS"
+        },
+        {
+          "key": "50",
+          "value": "50_Err_Back_Not_Cnvrtd"
+        },
+        {
+          "key": "51",
+          "value": "51_Err_Back_In_Cnvrsn"
+        },
+        {
+          "key": "52",
+          "value": "52_Err_Back_ACIS_Limbo"
+        },
+        {
+          "key": "53",
+          "value": "53_Err_Back_Lv_In_ACIS"
+        },
+        {
+          "key": "54",
+          "value": "54_Err_Back_Backout"
+        },
+        {
+          "key": "55",
+          "value": "55_Err_Bck_Nvr_Cnvrtd"
+        },
+        {
+          "key": "59",
+          "value": "59_Err_Bck_ARS_Wknd_Pymt"
+        },
+        {
+          "key": "60",
+          "value": "60_Err_Bck_CU_Not_Cvrtd"
+        },
+        {
+          "key": "61",
+          "value": "61_Err_Bck_CU_In_Cnvrsn"
+        },
+        {
+          "key": "62",
+          "value": "62_Err_Back_ACIS_Limbo"
+        },
+        {
+          "key": "63",
+          "value": "63_Err_Bck_CU_Ln_In_ACIS"
+        },
+        {
+          "key": "64",
+          "value": "64_Err_Bck_CU_Backout"
+        },
+        {
+          "key": "65",
+          "value": "65_Err_Bck_CU_Nvr_Cnvrt"
+        },
+        {
+          "key": "69",
+          "value": "69_Err_Bck_CU_Wknd_Pymt"
+        },
+        {
+          "key": "70",
+          "value": "70_ACIS_Error_Back"
+        },
+        {
+          "key": "71",
+          "value": "71_ACIS_Error_Back"
+        },
+        {
+          "key": "72",
+          "value": "72_ACIS_Error_Back"
+        },
+        {
+          "key": "73",
+          "value": "73_ACIS_Error_Back"
+        },
+        {
+          "key": "74",
+          "value": "74_ACIS_Error_Back"
+        },
+        {
+          "key": "75",
+          "value": "75_ACIS_Error_Back"
+        },
+        {
+          "key": "76",
+          "value": "76_ACIS_Reseller_Err_Bk"
+        },
+        {
+          "key": "77",
+          "value": "77_ACIS_Error_Back"
+        },
+        {
+          "key": "78",
+          "value": "78_ACIS_Error_Back"
+        },
+        {
+          "key": "79",
+          "value": "79_ACIS_Error_Back"
+        },
+        {
+          "key": "80",
+          "value": "80_APDP_Dst_NtTakeFr_CLY"
+        },
+        {
+          "key": "81",
+          "value": "81_NSF_Nt_Vld_In_CLY_Yet"
+        },
+        {
+          "key": "82",
+          "value": "82_Was_held_in_SUSPENSE"
+        },
+        {
+          "key": "83",
+          "value": "83_Required_inv#_missing"
+        },
+        {
+          "key": "94",
+          "value": "94_Err_No_Pymnt_Serial#"
+        },
+        {
+          "key": "95",
+          "value": "95_CC_GUESSING_FAILED"
+        },
+        {
+          "key": "96",
+          "value": "96_Invld_SPLTR_Value"
+        },
+        {
+          "key": "97",
+          "value": "97_ADJ_Dst_NtTakeFr_PyRc"
+        },
+        {
+          "key": "98",
+          "value": "98_Bill_Undr_or_Ctrl_Rec"
+        },
+        {
+          "key": "99",
+          "value": "99_Acct_Nt_On_Any_Spltr"
+        },
+        {
+          "key": "Z",
+          "value": ">ERR_INVLD_VALUE<"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "REASON",
+      "inputLength": 2,
+      "outputMaxLength": 18,
+      "count": 7,
+      "mappings": [
+        {
+          "key": "00",
+          "value": "00_PYMNT_DLVRD"
+        },
+        {
+          "key": "01",
+          "value": "ARS_CNVRSN_STARTED"
+        },
+        {
+          "key": "02",
+          "value": "CNVRSN_LIMBO"
+        },
+        {
+          "key": "03",
+          "value": "LIVE_IN_ACIS"
+        },
+        {
+          "key": "04",
+          "value": "CNVRSN_BACKED_OUT"
+        },
+        {
+          "key": "05",
+          "value": "ARS_ALWAYS"
+        },
+        {
+          "key": "Z",
+          "value": ">ERR_INVLD_VALUE<"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "DLVR_TO",
+      "inputLength": 2,
+      "outputMaxLength": 6,
+      "count": 42,
+      "mappings": [
+        {
+          "key": "00",
+          "value": "AR_SYS"
+        },
+        {
+          "key": "01",
+          "value": "ARS"
+        },
+        {
+          "key": "02",
+          "value": "ARS"
+        },
+        {
+          "key": "03",
+          "value": "ACIS"
+        },
+        {
+          "key": "04",
+          "value": "ARS"
+        },
+        {
+          "key": "05",
+          "value": "ARS"
+        },
+        {
+          "key": "10",
+          "value": "ARS"
+        },
+        {
+          "key": "11",
+          "value": "ARS"
+        },
+        {
+          "key": "13",
+          "value": "ACIS"
+        },
+        {
+          "key": "14",
+          "value": "ARS"
+        },
+        {
+          "key": "15",
+          "value": "ARS"
+        },
+        {
+          "key": "20",
+          "value": "ARS"
+        },
+        {
+          "key": "21",
+          "value": "ARS"
+        },
+        {
+          "key": "22",
+          "value": "ARS"
+        },
+        {
+          "key": "23",
+          "value": "ACIS"
+        },
+        {
+          "key": "24",
+          "value": "ARS"
+        },
+        {
+          "key": "25",
+          "value": "ARS"
+        },
+        {
+          "key": "30",
+          "value": "ARS"
+        },
+        {
+          "key": "31",
+          "value": "ARS"
+        },
+        {
+          "key": "33",
+          "value": "ACIS"
+        },
+        {
+          "key": "34",
+          "value": "ARS"
+        },
+        {
+          "key": "35",
+          "value": "ARS"
+        },
+        {
+          "key": "40",
+          "value": "RECIRC"
+        },
+        {
+          "key": "50",
+          "value": "ARS"
+        },
+        {
+          "key": "51",
+          "value": "ARS"
+        },
+        {
+          "key": "52",
+          "value": "ARS"
+        },
+        {
+          "key": "52",
+          "value": "ACIS"
+        },
+        {
+          "key": "54",
+          "value": "ARS"
+        },
+        {
+          "key": "54",
+          "value": "ARS"
+        },
+        {
+          "key": "60",
+          "value": "ARS"
+        },
+        {
+          "key": "61",
+          "value": "ARS"
+        },
+        {
+          "key": "63",
+          "value": "ACIS"
+        },
+        {
+          "key": "64",
+          "value": "ARS"
+        },
+        {
+          "key": "65",
+          "value": "ARS"
+        },
+        {
+          "key": "70",
+          "value": "ERR-BK"
+        },
+        {
+          "key": "71",
+          "value": "ERR-BK"
+        },
+        {
+          "key": "72",
+          "value": "ERR-BK"
+        },
+        {
+          "key": "76",
+          "value": "ERR-BK"
+        },
+        {
+          "key": "82",
+          "value": "SPNS"
+        },
+        {
+          "key": "83",
+          "value": "83_Required_inv#_missing"
+        },
+        {
+          "key": "99",
+          "value": "RECIRC"
+        },
+        {
+          "key": "Z",
+          "value": ">??????<"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "AABPSRCE",
+      "inputLength": 1,
+      "outputMaxLength": 4,
+      "count": 3,
+      "mappings": [
+        {
+          "key": "A",
+          "value": "AACC"
+        },
+        {
+          "key": "C",
+          "value": "CEPS"
+        },
+        {
+          "key": "Z",
+          "value": "UNKN"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "SPLITTERID",
+      "inputLength": 1,
+      "outputMaxLength": 4,
+      "count": 6,
+      "mappings": [
+        {
+          "key": "0",
+          "value": "OHIO"
+        },
+        {
+          "key": "1",
+          "value": "WISC"
+        },
+        {
+          "key": "2",
+          "value": "INDI"
+        },
+        {
+          "key": "3",
+          "value": "MICH"
+        },
+        {
+          "key": "4",
+          "value": "ILLI"
+        },
+        {
+          "key": "Z",
+          "value": "UNKN"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "AABPSTATUS",
+      "inputLength": 1,
+      "outputMaxLength": 11,
+      "count": 5,
+      "mappings": [
+        {
+          "key": "0",
+          "value": "ARS:LV/FNL"
+        },
+        {
+          "key": "1",
+          "value": "ARS:CNVRSN"
+        },
+        {
+          "key": "2",
+          "value": "ACIS:LIMBO"
+        },
+        {
+          "key": "3",
+          "value": "ACIS:LV/FNL"
+        },
+        {
+          "key": "4",
+          "value": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "type": "MAP",
+      "name": "AABPERROR",
+      "inputLength": 2,
+      "outputMaxLength": 15,
+      "count": 7,
+      "mappings": [
+        {
+          "key": "00",
+          "value": "DELIVERED"
+        },
+        {
+          "key": "70",
+          "value": "ACIS_ERROR_BACK"
+        },
+        {
+          "key": "96",
+          "value": "NT_DLVD:ARS"
+        },
+        {
+          "key": "97",
+          "value": "NT_DLVD:NBR_CHG"
+        },
+        {
+          "key": "98",
+          "value": "NT_DLVD:BL_UNDR"
+        },
+        {
+          "key": "98",
+          "value": "NT_DLVD:NT_FND"
+        },
+        {
+          "key": "Z",
+          "value": "UNKNOWN_ERROR"
+        }
+      ]
+    },
+    {
       "type": "FILTER",
       "name": "OHIO-ARS/ACIS-ACCOUNTS",
       "dictionaryTable": "PJY0B.CMR.KSDS.WORD.ACCOUNT.OA",

@@ -20,13 +20,20 @@ public class FieldMappingService
         mappings = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
 
-        try (InputStream is = getClass().getResourceAsStream("/fields.json"))
+        try (InputStream is = getClass().getResourceAsStream("/main.json"))
         {
             JsonNode root = mapper.readTree(is);
             JsonNode configs = root.get("configs");
 
             for (JsonNode config : configs)
             {
+                String type = config.has("type") ? config.get("type").asText() : "";
+
+                if (!"MAP".equalsIgnoreCase(type))
+                {
+                    continue;
+                }
+
                 String name = config.get("name").asText();
                 Map<String, String> mapValues = new HashMap<>();
 

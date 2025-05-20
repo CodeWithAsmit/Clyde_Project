@@ -1,5 +1,6 @@
 package com.example.ClydeProject.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ConfigurationService
+public class FilterMappingService
 {
     private Map<String, FilterConfig> filterConfigs;
     
@@ -20,15 +21,18 @@ public class ConfigurationService
         try
         {
             ObjectMapper mapper = new ObjectMapper();
-            ClassPathResource resource = new ClassPathResource("application.json");
+            ClassPathResource resource = new ClassPathResource("main.json");
             
-            ConfigRoot configRoot = mapper.readValue(resource.getInputStream(), ConfigRoot.class);
+            JsonNode root = mapper.readTree(resource.getInputStream());
+            JsonNode configs = root.get("configs");
             
             filterConfigs = new HashMap<>();
-            for (FilterConfig config : configRoot.getConfigs())
+
+            for (JsonNode node : configs)
             {
-                if ("FILTER".equals(config.getType()))
+                if ("FILTER".equals(node.get("type").asText()))
                 {
+                    FilterConfig config = mapper.treeToValue(node, FilterConfig.class);
                     filterConfigs.put(config.getName(), config);
                 }
             }

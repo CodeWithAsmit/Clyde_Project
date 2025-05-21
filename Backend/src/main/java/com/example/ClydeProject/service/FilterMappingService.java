@@ -75,6 +75,7 @@ public class FilterMappingService
         private int linesToDisplay;
         private int maxCharsPerLine;
         private List<String> displayLines;
+        private List<String> formattedDisplayLines;
         private int fieldsCount;
         private List<FieldConfig> fields;
 
@@ -188,6 +189,16 @@ public class FilterMappingService
             this.displayLines = displayLines;
         }
 
+        public List<String> getFormattedDisplayLines()
+        {
+            return formattedDisplayLines;
+        }
+
+        public void setFormattedDisplayLines(List<String> formattedDisplayLines)
+        {
+            this.formattedDisplayLines = formattedDisplayLines;
+        }
+
         public int getMaxCharsPerLine()
         {
             return maxCharsPerLine;
@@ -217,6 +228,8 @@ public class FilterMappingService
         private String displayFormat;
         private int line;
         private int column;
+        private String dbFieldName;
+        private String fieldName;
 
         public int getOffset()
         {
@@ -276,6 +289,26 @@ public class FilterMappingService
         public void setColumn(int column)
         {
             this.column = column;
+        }
+
+        public String getDbFieldName()
+        {
+            return dbFieldName;
+        }
+        
+        public void setDbFieldName(String dbFieldName)
+        {
+            this.dbFieldName = dbFieldName;
+        }
+        
+        public String getFieldName()
+        {
+            return fieldName;
+        }
+        
+        public void setFieldName(String fieldName)
+        {
+            this.fieldName = fieldName;
         }
     }
 }

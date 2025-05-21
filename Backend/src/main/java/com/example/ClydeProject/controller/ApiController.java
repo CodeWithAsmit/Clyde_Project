@@ -20,9 +20,7 @@ public class ApiController
 
     @PostMapping("/get_count_for_words")
     public ResponseEntity<Map<String, Object>> getWordCount(@RequestBody Map<String, Object> requestBody)
-    {
-        System.out.println("Request Body inside getWordCount: " + requestBody);
-        
+    {        
         try
         {
             List<String> words = null;
@@ -84,10 +82,8 @@ public class ApiController
     }
 
     @PostMapping("/display_records")
-    public ResponseEntity<List<Map<String, Object>>> displayRecords(@RequestBody Map<String, Object> requestBody)
+    public ResponseEntity<List<List<String>>> displayRecords(@RequestBody Map<String, Object> requestBody)
     {
-        System.out.println("Request Body inside displayRecords: " + requestBody);
-
         try
         {
             List<String> words = new ArrayList<>();
@@ -115,9 +111,8 @@ public class ApiController
                 }
             }
 
-            List<Map<String, Object>> result = apiService.displayMasterTable(words,locations);
-            System.out.println("Mapped Results: " + result);
-            System.out.println("Total Results: " + result.size());
+            List<List<String>> result = apiService.displayMasterTable(words, locations);
+            System.out.println("Result from displayMasterTable: " + result);
             return ResponseEntity.ok(result);
         }
         catch (Exception e)

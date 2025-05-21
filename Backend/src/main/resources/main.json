@@ -1610,47 +1610,64 @@
         "BNA4:                                ACT STAT   TYPE         MMMDDYY",
         "BNA5:                                >NON-pub<  IL-xxxx"
       ],
+      "formattedDisplayLines": [
+        "BNA1: ${bn1} (${npa}) ${nxx}-${line_no} ${cust_code} ${calc_ck_dgt}   ${bui}",
+        "BNA2: ${bn2} BOA ${tot_amt_due} CUR ${curr_chg_due}",
+        "BNA3: ${ba1} PRE ${prev_bal_due} LST ${last_bill_due}",
+        "BNA4: ${ba2} ${acct_stat} ${acct_type} ${bill_date}",
+        "BNA5: ${po_cty_st_zip} ${non_pub} IL-${orig_src}"
+      ],
       "fieldsCount": 21,
       "fields": [
         {
           "offset": 33,
           "inputFormat": "%30c",
           "mapName": "NULL",
-          "displayFormat": "%.30s",
+          "displayFormat": "%-30s",
           "line": 0,
-          "column": 6
+          "column": 6,
+          "dbFieldName": "bn1",
+          "fieldName": "bn1"
         },
         {
           "offset": 63,
           "inputFormat": "%30c",
           "mapName": "NULL",
-          "displayFormat": "%.30s",
+          "displayFormat": "%-30s",
           "line": 1,
-          "column": 6
+          "column": 6,
+          "dbFieldName": "bn2",
+          "fieldName": "bn2"
         },
         {
           "offset": 93,
           "inputFormat": "%30c",
           "mapName": "NULL",
-          "displayFormat": "%.30s",
+          "displayFormat": "%-30s",
           "line": 2,
-          "column": 6
+          "column": 6,
+          "dbFieldName": "ba1",
+          "fieldName": "ba1"
         },
         {
           "offset": 123,
           "inputFormat": "%30c",
           "mapName": "NULL",
-          "displayFormat": "%.30s",
+          "displayFormat": "%-30s",
           "line": 3,
-          "column": 6
+          "column": 6,
+          "dbFieldName": "ba2",
+          "fieldName": "ba2"
         },
         {
           "offset": 153,
           "inputFormat": "%30c",
           "mapName": "NULL",
-          "displayFormat": "%.30s",
+          "displayFormat": "%-30s",
           "line": 4,
-          "column": 6
+          "column": 6,
+          "dbFieldName": "po_cty_st_zip",
+          "fieldName": "po_cty_st_zip"
         },
         {
           "offset": 16,
@@ -1658,127 +1675,159 @@
           "mapName": "NULL",
           "displayFormat": "%.3s",
           "line": 0,
-          "column": 38
+          "column": 38,
+          "dbFieldName": "npa",
+          "fieldName": "npa"
         },
         {
           "offset": 19,
           "inputFormat": "%3c",
           "mapName": "NULL",
-          "displayFormat": "%.3s",
+          "displayFormat": "%-3s",
           "line": 0,
-          "column": 43
+          "column": 43,
+          "dbFieldName": "nxx",
+          "fieldName": "nxx"
         },
         {
           "offset": 22,
           "inputFormat": "%4c",
           "mapName": "NULL",
-          "displayFormat": "%.4s",
+          "displayFormat": "%-4s",
           "line": 0,
-          "column": 47
+          "column": 47,
+          "dbFieldName": "line_no",
+          "fieldName": "line_no"
         },
         {
           "offset": 26,
           "inputFormat": "%3c",
           "mapName": "NULL",
-          "displayFormat": "%.3s",
+          "displayFormat": "%-3s",
           "line": 0,
-          "column": 52
+          "column": 52,
+          "dbFieldName": "cust_code",
+          "fieldName": "cust_code"
         },
         {
           "offset": 183,
           "inputFormat": "%8c",
           "mapName": "NULL",
-          "displayFormat": "%.8s",
+          "displayFormat": "%-8s",
           "line": 0,
-          "column": 60
+          "column": 60,
+          "dbFieldName": "bui",
+          "fieldName": "bui"
         },
         {
           "offset": 0,
           "inputFormat": "!4",
           "mapName": "NULL",
-          "displayFormat": "%d",
+          "displayFormat": "%-11.0f",
           "line": 1,
-          "column": 41
+          "column": 41,
+          "dbFieldName": "tot_amt_due",
+          "fieldName": "tot_amt_due"
         },
         {
           "offset": 8,
           "inputFormat": "!4",
           "mapName": "NULL",
-          "displayFormat": "%d",
+          "displayFormat": "%-11.0f",
           "line": 1,
-          "column": 57
+          "column": 57,
+          "dbFieldName": "curr_chg_due",
+          "fieldName": "curr_chg_due"
         },
         {
           "offset": 4,
           "inputFormat": "!4",
           "mapName": "NULL",
-          "displayFormat": "%d",
+          "displayFormat": "%-11.0f",
           "line": 2,
-          "column": 41
+          "column": 41,
+          "dbFieldName": "prev_bal_due",
+          "fieldName": "prev_bal_due"
         },
         {
           "offset": 12,
           "inputFormat": "!4",
           "mapName": "NULL",
-          "displayFormat": "%d",
+          "displayFormat": "%-11.0f",
           "line": 2,
-          "column": 57
+          "column": 57,
+          "dbFieldName": "last_bill_due",
+          "fieldName": "last_bill_due"
         },
         {
           "offset": 31,
           "inputFormat": "%1c",
           "mapName": "ACCT-STATUS",
-          "displayFormat": "%.8s",
+          "displayFormat": "%-10s",
           "line": 3,
-          "column": 37
+          "column": 37,
+          "dbFieldName": "acct_stat",
+          "fieldName": "acct_stat"
         },
         {
           "offset": 32,
           "inputFormat": "%1c",
           "mapName": "ARSTYPE",
-          "displayFormat": "%.10s",
+          "displayFormat": "%-12s",
           "line": 3,
-          "column": 48
+          "column": 48,
+          "dbFieldName": "acct_type",
+          "fieldName": "acct_type"
         },
         {
           "offset": 204,
           "inputFormat": "%7c",
           "mapName": "NULL",
-          "displayFormat": "%.7s",
+          "displayFormat": "%-7s",
           "line": 3,
-          "column": 61
+          "column": 61,
+          "dbFieldName": "bill_date",
+          "fieldName": "bill_date"
         },
         {
           "offset": 30,
           "inputFormat": "%1c",
           "mapName": "ARSPUB",
-          "displayFormat": "%.9s",
+          "displayFormat": "%-10s",
           "line": 4,
-          "column": 37
+          "column": 37,
+          "dbFieldName": "non_pub",
+          "fieldName": "non_pub"
         },
         {
           "offset": 211,
           "inputFormat": "%1c",
           "mapName": "NULL",
-          "displayFormat": "%.1s",
+          "displayFormat": "%-1s",
           "line": 0,
-          "column": 56
+          "column": 56,
+          "dbFieldName": "calc_ck_dgt",
+          "fieldName": "calc_ck_dgt"
         },
         {
           "offset": 212,
           "inputFormat": "%4c",
           "mapName": "NULL",
-          "displayFormat": "%.4s",
+          "displayFormat": "%-4s",
           "line": 4,
-          "column": 51
+          "column": 51,
+          "dbFieldName": "orig_src",
+          "fieldName": "orig_src"
         },
         {
           "offset": 191,
           "inputFormat": "%10c",
           "mapName": "NULL",
-          "displayFormat": "%.10s",
+          "displayFormat": "%-10s",
           "line": 4,
-          "column": 58
+          "column": 58,
+          "dbFieldName": "invoice_number",
+          "fieldName": "invoice_number"
         }
       ]
     },

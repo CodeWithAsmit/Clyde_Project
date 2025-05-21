@@ -64,7 +64,6 @@ const ClydeMenuScreen: React.FC = () => {
       });
 
       const data = await response.json();
-      console.log('Display list response:', data);
       
       if (Array.isArray(data))
       {

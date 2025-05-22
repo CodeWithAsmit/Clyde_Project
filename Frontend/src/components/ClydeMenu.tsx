@@ -34,18 +34,25 @@ const ClydeMenuScreen: React.FC = () => {
 
     setWarningMessage('');
     
+    const currentBuffer = action === 'add' ? [] : wordBuffer;
+
+    console.log('Input Word:', inputWord);
+    console.log('Word Buffer:', wordBuffer);
+    console.log('Current Buffer:', currentBuffer);
+    console.log('Action:', action);
+
     try
     {
       const response = await fetch('http://localhost:8080/get_count_for_words', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ word: inputWord, buffer: wordBuffer, locations: activeLocations })
+        body: JSON.stringify({ word: inputWord, buffer: currentBuffer, locations: activeLocations })
       });
       const data = await response.json();
       setCount(data.count);
-      setWordBuffer(prev => [...prev, inputWord]);
+      setWordBuffer([...currentBuffer, inputWord]);
       setInputWord('');
-      setShowBuffer(false);
+      setShowBuffer(true);
     }
     catch (error)
     {
@@ -150,11 +157,10 @@ const ClydeMenuScreen: React.FC = () => {
         </div>
       </div>
 
-      <div className="card bg-black border-success text-success shadow-sm rounded-4 w-100 mb-4 fade-slide-in" style={{ maxWidth: '900px' }}>
+      <div className="card bg-white border-success text-dark shadow-sm rounded-4 w-100 mb-4 fade-slide-in" style={{ maxWidth: '900px' }}>
         <div className="card-body">
-          <h5 className="fw-bold">📊 Status</h5>
-          <p className="mb-1">Total Records in Buffer: <span className="fw-bold">{count}</span></p>
-          {showBuffer && (<p className="mb-0"><strong>🧠 Word Buffer:</strong> {wordBuffer.join(', ')}</p>)}
+          <p className="mb-1">Total records : <span className="fw-bold">{count}</span></p>
+          {showBuffer && (<p className="mb-0">Current word buffer : <strong>{wordBuffer.join(', ')}</strong></p>)}
         </div>
       </div>
     </div>

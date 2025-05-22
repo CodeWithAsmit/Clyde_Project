@@ -47,7 +47,6 @@ const ClydeTableScreen: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    console.log('Active Location Names:', activeLocations);
     navigate('/clyde-menu', { state: { activeLocations } });
   };
 

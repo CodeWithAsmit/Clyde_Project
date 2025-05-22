@@ -84,7 +84,6 @@ function SelectLocationScreen()
                 transition: 'none',
               }}
               onClick={() => {
-                console.log(`Selected: ${item}`);
                 handleSelect();
               }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = ''}

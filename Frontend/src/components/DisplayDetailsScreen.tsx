@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../Utility/ThemeContext';
 
@@ -10,13 +10,22 @@ const DisplayDetailsScreen: React.FC = () => {
     const displayList = location.state?.displayList as string[][];
 
     const [currentPage, setCurrentPage] = useState(1);
-    const recordsPerPage = 10;
+    const [recordsPerPage, setRecordsPerPage] = useState(10);
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const currentRecords = displayList?.slice(indexOfFirstRecord, indexOfLastRecord) || [];
     const totalPages = Math.ceil((displayList?.length || 0) / recordsPerPage); 
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [recordsPerPage]);
+
+    const handleRecordsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    {
+        setRecordsPerPage(Number(event.target.value));
+    };
 
     return (
         <div className={`container-fluid min-vh-75 d-flex flex-column justify-content-start align-items-center py-5 px-3 fade-slide-in
@@ -54,6 +63,21 @@ const DisplayDetailsScreen: React.FC = () => {
                     <br/>
                     {displayList && displayList.length > 0 ? (
                         <>
+                            <div className="d-flex justify-content-end mb-3">
+                                <label htmlFor="recordsPerPage" className="me-2">Rows per page:</label>
+                                <select
+                                    id="recordsPerPage"
+                                    className="form-select form-select-sm"
+                                    style={{ width: 'auto' }}
+                                    value={recordsPerPage}
+                                    onChange={handleRecordsPerPageChange}
+                                >
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
                             <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
                                 {currentRecords.map((record, index) => (
                                     <React.Fragment key={index}>
@@ -90,7 +114,13 @@ const DisplayDetailsScreen: React.FC = () => {
 
             <button 
                 className="btn btn-success btn-lg rounded-pill mt-4 shadow"
-                onClick={() => navigate('/clyde-menu', { state: { activeLocations: location.state?.activeLocations || [] } })}
+                onClick={() => navigate('/clyde-menu', { 
+                    state: { 
+                        activeLocations: location.state?.activeLocations || [],
+                        wordBuffer: location.state?.wordBuffer || [],
+                        count: location.state?.count || 0
+                    }
+                })}
                 style={{ padding: '0.5rem 2.2rem', fontSize: '1.2rem' }}>
                 Back to Menu
             </button>

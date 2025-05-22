@@ -9,13 +9,14 @@ const ClydeMenuScreen: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const activeLocations = location.state?.activeLocations || [];
 
-  const [count, setCount] = useState<number>(0);
-  const [wordBuffer, setWordBuffer] = useState<string[]>([]);
   const [inputWord, setInputWord] = useState<string>('');
-  const [showBuffer, setShowBuffer] = useState<boolean>(false);
   const [warningMessage, setWarningMessage] = useState<string>('');
+
+  const activeLocations = location.state?.activeLocations || [];  
+  const [count, setCount] = useState<number>(location.state?.count || 0);
+  const [wordBuffer, setWordBuffer] = useState<string[]>(location.state?.wordBuffer || []);
+  const [showBuffer, setShowBuffer] = useState<boolean>(location.state?.wordBuffer?.length > 0);
   
   const { isDarkMode, toggleTheme } = useTheme();
 
@@ -35,11 +36,6 @@ const ClydeMenuScreen: React.FC = () => {
     setWarningMessage('');
     
     const currentBuffer = action === 'add' ? [] : wordBuffer;
-
-    console.log('Input Word:', inputWord);
-    console.log('Word Buffer:', wordBuffer);
-    console.log('Current Buffer:', currentBuffer);
-    console.log('Action:', action);
 
     try
     {
@@ -74,7 +70,7 @@ const ClydeMenuScreen: React.FC = () => {
       
       if (Array.isArray(data))
       {
-        navigate('/display-details', { state: { displayList: data, activeLocations } });
+        navigate('/display-details', {state: {displayList: data, activeLocations, wordBuffer, count}});
       }
       else
       {

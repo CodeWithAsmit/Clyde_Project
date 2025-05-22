@@ -112,7 +112,6 @@ public class ApiController
             }
 
             List<List<String>> result = apiService.displayMasterTable(words, locations);
-            System.out.println("Result from displayMasterTable: " + result);
             return ResponseEntity.ok(result);
         }
         catch (Exception e)

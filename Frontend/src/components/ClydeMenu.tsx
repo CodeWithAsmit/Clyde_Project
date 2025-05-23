@@ -58,6 +58,19 @@ const ClydeMenuScreen: React.FC = () => {
   };
 
   const displayTheList = async () => {
+
+    if (wordBuffer.length === 0)
+    {
+      setWarningMessage('The word buffer is empty. Add at least one word before displaying the list.');
+      return;
+    }
+  
+    if (activeLocations.length === 0)
+    {
+      setWarningMessage('No locations selected. Please select at least one location before displaying the list.');
+      return;
+    }
+    
     try
     {
       const response = await fetch('http://localhost:8080/display_records', {

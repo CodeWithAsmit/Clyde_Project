@@ -18,51 +18,33 @@ public class ApiController
     @Autowired
     private ApiService apiService;
 
+    private static class WordsAndLocations
+    {
+        final List<String> words;
+        final List<String> locations;
+
+        WordsAndLocations(List<String> words, List<String> locations)
+        {
+            this.words = words;
+            this.locations = locations;
+        }
+    }
+
     @PostMapping("/get_count_for_words")
     public ResponseEntity<Map<String, Object>> getWordCount(@RequestBody Map<String, Object> requestBody)
     {        
         try
         {
-            List<String> words = null;
             String newWord = null;
-            List<String> locations = null;
-
-            if (requestBody.get("buffer") instanceof List<?>)
-            {
-                words = new ArrayList<>();
-                List<?> bufferList = (List<?>) requestBody.get("buffer");
-                for (Object item : bufferList)
-                {
-                    if (item instanceof String)
-                    {
-                        words.add((String) item);
-                    }
-                }
-            }
-
+            
+            WordsAndLocations extracted = extractWordsAndLocations(requestBody);
+            List<String> words = extracted.words;
+            List<String> locations = extracted.locations;
+            
             if (requestBody.get("word") instanceof String)
             {
                 newWord = (String) requestBody.get("word");
             }
-
-            if (requestBody.get("locations") instanceof List<?>)
-            {
-                locations = new ArrayList<>();
-                List<?> locationsList = (List<?>) requestBody.get("locations");
-                for (Object item : locationsList)
-                {
-                    if (item instanceof String)
-                    {
-                        locations.add((String) item);
-                    }
-                }
-            }
-
-            if (words == null)
-            {
-                words = new ArrayList<>();
-            }
-
             if (newWord != null)
             {
                 words.add(newWord);
@@ -86,30 +68,9 @@ public class ApiController
     {
         try
         {
-            List<String> words = new ArrayList<>();
-
-            if (requestBody.get("buffer") instanceof List<?> bufferList)
-            {
-                for (Object item : bufferList)
-                {
-                    if (item instanceof String str)
-                    {
-                        words.add(str);
-                    }
-                }
-            }
-
-            List<String> locations = new ArrayList<>();
-            if (requestBody.get("locations") instanceof List<?> locationsList)
-            {
-                for (Object item : locationsList)
-                {
-                    if (item instanceof String str)
-                    {
-                        locations.add(str);
-                    }
-                }
-            }
+            WordsAndLocations extracted = extractWordsAndLocations(requestBody);
+            List<String> words = extracted.words;
+            List<String> locations = extracted.locations;
 
             List<List<String>> result = apiService.displayMasterTable(words, locations);
             return ResponseEntity.ok(result);
@@ -119,5 +80,34 @@ public class ApiController
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    private WordsAndLocations  extractWordsAndLocations(Map<String, Object> requestBody)
+    {
+        List<String> words = new ArrayList<>();
+        List<String> locations = new ArrayList<>();
+
+        if (requestBody.get("buffer") instanceof List<?> bufferList)
+        {
+            for (Object item : bufferList)
+            {
+                if (item instanceof String str)
+                {
+                    words.add(str);
+                }
+            }
+        }
+
+        if (requestBody.get("locations") instanceof List<?> locationsList)
+        {
+            for (Object item : locationsList)
+            {
+                if (item instanceof String str)
+                {
+                    locations.add(str);
+                }
+            }
+        }
+        return new WordsAndLocations(words, locations);
     }
 }

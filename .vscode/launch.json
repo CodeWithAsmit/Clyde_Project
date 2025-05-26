@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ClydeProjectApplication<ClydeProject>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.ClydeProject.ClydeProjectApplication",
+            "projectName": "ClydeProject",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -147,19 +147,24 @@ const ClydeMenuScreen: React.FC = () => {
           )}
 
           <div className="row text-center g-3">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <button className="btn btn-success w-100 py-2 rounded-3 fw-bold" onClick={() => sendWordToBackend('add')}>
                 Add Word
               </button>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
               <button className="btn btn-outline-warning w-100 py-2 rounded-3 fw-bold" onClick={() => sendWordToBackend('restrict')}>
                 Restrict Word
               </button>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
               <button className="btn btn-info w-100 py-2 rounded-3 fw-bold text-dark" onClick={displayTheList}>
                 Display List
+              </button>
+            </div>
+            <div className="col-md-3">
+              <button className="btn btn-secondary w-100 py-2 rounded-3 fw-bold" onClick={() => navigate('/clyde-table')}>
+                Change Filter
               </button>
             </div>
           </div>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../Utility/ThemeContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../CSS/ClydeScreens.css';
@@ -14,7 +14,10 @@ interface LocationWithStatus extends Location {
 }
 
 const ClydeTableScreen: React.FC = () => {
+
+  const location = useLocation();
   const navigate = useNavigate();
+
   const { isDarkMode, toggleTheme } = useTheme();
 
   const sampleLocations: Location[] = [
@@ -32,7 +35,19 @@ const ClydeTableScreen: React.FC = () => {
     sampleLocations.map((loc) => ({ ...loc, status: 'OFF' }))
   );
 
-  const [activeLocations, setActiveLocations] = useState<string[]>([]);
+  const [activeLocations, setActiveLocations] = useState<string[]>(location.state?.activeLocations || []);
+
+  useEffect(() => {
+    if (location.state?.activeLocations)
+    {
+      setLocations(prevLocations =>
+        prevLocations.map(loc => ({
+          ...loc,
+          status: location.state.activeLocations.includes(loc.name) ? 'ON' : 'OFF'
+        }))
+      );
+    }
+  }, [location.state?.activeLocations]);
 
   const toggleStatus = (name: string) => {
     setLocations((prev) =>
@@ -47,7 +62,11 @@ const ClydeTableScreen: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    navigate('/clyde-menu', { state: { activeLocations } });
+    navigate('/clyde-menu', { state: { 
+      activeLocations,
+      wordBuffer: location.state?.wordBuffer || [],
+      count: location.state?.count || 0
+    }});
   };
 
   return (

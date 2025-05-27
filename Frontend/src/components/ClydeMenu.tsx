@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '../Utility/ThemeContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../CSS/ClydeScreens.css'
-import { useTheme } from '../Utility/ThemeContext';
 
 const ClydeMenuScreen: React.FC = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const [inputWord, setInputWord] = useState<string>('');
   const [warningMessage, setWarningMessage] = useState<string>('');
@@ -18,7 +18,30 @@ const ClydeMenuScreen: React.FC = () => {
   const [wordBuffer, setWordBuffer] = useState<string[]>(location.state?.wordBuffer || []);
   const [showBuffer, setShowBuffer] = useState<boolean>(location.state?.wordBuffer?.length > 0);
   
-  const { isDarkMode, toggleTheme } = useTheme();
+  useEffect(() =>
+  {
+    recalculateCount(activeLocations, wordBuffer);
+  }, []);
+
+  const recalculateCount = async (activeLocations: string[], wordBuffer: string[]) => {
+    if (activeLocations.length > 0 && wordBuffer.length > 0)
+    {
+      try
+      {
+        const response = await fetch('http://localhost:8080/get_count_for_words', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ buffer: wordBuffer, locations: activeLocations })
+        });
+        const data = await response.json();
+        setCount(data.count);
+        setShowBuffer(true);
+      } catch (error)
+      {
+        setWarningMessage(`An error occurred while re-calculating the word count.`);
+      }
+    }
+  };
 
   const sendWordToBackend = async (action: 'add' | 'restrict') => {
     
@@ -163,7 +186,7 @@ const ClydeMenuScreen: React.FC = () => {
               </button>
             </div>
             <div className="col-md-3">
-              <button className="btn btn-secondary w-100 py-2 rounded-3 fw-bold" onClick={() => navigate('/clyde-table')}>
+              <button className="btn btn-secondary w-100 py-2 rounded-3 fw-bold" onClick={() => navigate('/clyde-table', {state: {activeLocations: location.state?.activeLocations || [], wordBuffer, inputWord, count}})}>
                 Change Filter
               </button>
             </div>

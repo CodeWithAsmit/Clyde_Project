@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../Utility/ThemeContext';
+import mainJson from '../Utility/location_flag.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../CSS/ClydeScreens.css';
 
@@ -20,16 +21,9 @@ const ClydeTableScreen: React.FC = () => {
 
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const sampleLocations: Location[] = [
-    { name: 'OHIO-ARS/ACIS-ACCOUNTS', number: null },
-    { name: 'WISC-ARS/ACIS-ACCOUNTS', number: null },
-    { name: 'INDI-ARS/ACIS-ACCOUNTS', number: null },
-    { name: 'ILLI-ARS/ACIS-ACCOUNTS', number: null },
-    { name: 'MICH-ARS/ACIS-ACCOUNTS', number: null },
-    { name: 'ACI-LD-ACCOUNTS', number: null },
-    { name: 'CABS-ACCOUNTS', number: null },
-    { name: 'MLNM-LSB-ILS-RBS', number: null },
-  ];
+  const sampleLocations: Location[] = mainJson
+  .filter(item => item.type === "FILTER" && item.flag === "ON")
+  .map(item => ({ name: item.name, number: null }));
 
   const [locations, setLocations] = useState<LocationWithStatus[]>(
     sampleLocations.map((loc) => ({ ...loc, status: 'OFF' }))

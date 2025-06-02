@@ -1,0 +1,457 @@
+[
+  {
+    "type": "FILTER",
+    "name": "OHIO-ARS/ACIS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "WISC-ARS/ACIS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "INDI-ARS/ACIS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "ILLI-ARS/ACIS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "MICH-ARS/ACIS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "ACI-LD-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "CABS-ACCOUNTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "MLNM-LSB-ILS-RBS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "RECIRCULATING-PAYMENTS",
+    "flag": "ON"
+  },
+  {
+    "type": "FILTER",
+    "name": "SUSPENSE-RECIRCULATING",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "ADJUSTMNTS-2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "ADJUSTMNTS-2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "ADJUSTMNTS-2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Hstrcl-Pymnt-Errs-2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Hstrcl-Pymnt-Errs-2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Hstrcl-Pymnt-Errs-2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "PYMNT-REFUND-YR2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "PYMNT-REFUND-YR2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "PYMNT-REFUND-YR2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2025",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2024",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2023",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2022",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2021",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAR2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-FEB2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JAN2020",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-DEC2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-NOV2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-OCT2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-SEP2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-AUG2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUL2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-JUN2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-MAY2019",
+    "flag": "OFF"
+  },
+  {
+    "type": "FILTER",
+    "name": "Pay-CONSLD-APR2019",
+    "flag": "OFF"
+  }
+]

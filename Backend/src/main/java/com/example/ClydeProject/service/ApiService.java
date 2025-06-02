@@ -65,11 +65,6 @@ public class ApiService
     private String mapTableName(String configTableName)
     {
         String[] parts = configTableName.toLowerCase().split("\\.");
-
-        if (parts.length < 6)
-        {
-            return configTableName;
-        }
     
         StringBuilder result = new StringBuilder("pjy0b_");
     

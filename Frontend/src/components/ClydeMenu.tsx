@@ -10,20 +10,24 @@ const ClydeMenuScreen: React.FC = () => {
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
 
-  const [inputWord, setInputWord] = useState<string>('');
-  const [warningMessage, setWarningMessage] = useState<string>('');
+  const activeLocations = location.state?.activeLocations || []; 
 
-  const activeLocations = location.state?.activeLocations || [];  
+  const [inputWord, setInputWord] = useState<string>('');
+  const [warningMessage, setWarningMessage] = useState<string>(''); 
+  
   const [count, setCount] = useState<number>(location.state?.count || 0);
   const [wordBuffer, setWordBuffer] = useState<string[]>(location.state?.wordBuffer || []);
+  const [containBuffer, setContainBuffer] = useState<string[]>(location.state?.containBuffer || []);
+  const [inputQueue, setInputQueue] = useState<string[]>(location.state?.inputQueue || []);
   const [showBuffer, setShowBuffer] = useState<boolean>(location.state?.wordBuffer?.length > 0);
   
   useEffect(() =>
   {
-    recalculateCount(activeLocations, wordBuffer);
+    recalculateCount(activeLocations, wordBuffer, containBuffer);
   }, []);
 
-  const recalculateCount = async (activeLocations: string[], wordBuffer: string[]) => {
+  const recalculateCount = async (activeLocations: string[], wordBuffer: string[], containBuffer: string[]) =>
+  {
     if (activeLocations.length > 0 && wordBuffer.length > 0)
     {
       try
@@ -31,7 +35,7 @@ const ClydeMenuScreen: React.FC = () => {
         const response = await fetch('http://localhost:8080/get_count_for_words', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ buffer: wordBuffer, locations: activeLocations })
+          body: JSON.stringify({ wordBuffer: wordBuffer, locations: activeLocations, containsWord: containBuffer })
         });
         const data = await response.json();
         setCount(data.count);
@@ -43,40 +47,66 @@ const ClydeMenuScreen: React.FC = () => {
     }
   };
 
-  const sendWordToBackend = async (action: 'add' | 'restrict') => {
-    
+  const sendWordToBackend = async (action: 'add' | 'restrict' | 'contains') => {
+
+    const actionVerbMap = { add: 'adding', restrict: 'restricting', contains: 'checking'};
+
     if (!inputWord.trim())
     {
-      setWarningMessage(`Please enter a word before ${action === 'add' ? 'adding' : 'restricting'}.`);
+      setWarningMessage(`Please enter a word before ${actionVerbMap[action]}.`);
       return;
     }
-    if (action === 'restrict' && wordBuffer.length === 0)
+    if ((action === 'restrict' || action === 'contains') && wordBuffer.length === 0)
     {
-      setWarningMessage('The word buffer is empty. Add a word first.');
+      setWarningMessage('The word wordBuffer is empty. Add a word first.');
       return;
     }
 
     setWarningMessage('');
     
-    const currentBuffer = action === 'add' ? [] : wordBuffer;
+    let updatedWordBuffer = wordBuffer;
+    let updatedContainBuffer = containBuffer;
+
+    if (action === 'add')
+    {
+      updatedWordBuffer = [inputWord];
+      updatedContainBuffer = [];
+      setWordBuffer(updatedWordBuffer);
+      setContainBuffer(updatedContainBuffer);
+      setInputQueue([inputWord]);
+    }
+    else
+    {
+      if (action === 'contains')
+      {
+        updatedContainBuffer = [...containBuffer, inputWord];
+        setContainBuffer(updatedContainBuffer);
+      }
+      else
+      {
+        updatedWordBuffer = [...wordBuffer, inputWord];
+        setWordBuffer(updatedWordBuffer);
+      }
+      setInputQueue(prevQueue => [...prevQueue, inputWord]);
+    }
 
     try
     {
       const response = await fetch('http://localhost:8080/get_count_for_words', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ word: inputWord, buffer: currentBuffer, locations: activeLocations })
+        body: JSON.stringify({ wordBuffer: updatedWordBuffer, locations: activeLocations, containsWord: updatedContainBuffer })
       });
+
       const data = await response.json();
       setCount(data.count);
-      setWordBuffer([...currentBuffer, inputWord]);
       setInputWord('');
       setShowBuffer(true);
     }
     catch (error)
     {
       console.error(`Error during ${action}:`, error);
-      setWarningMessage(`An error occurred while ${action === 'add' ? 'adding' : 'restricting'} the word.`);
+      setWarningMessage(`An error occurred while (${action}) the word.`);
     }
   };
 
@@ -84,7 +114,7 @@ const ClydeMenuScreen: React.FC = () => {
 
     if (wordBuffer.length === 0)
     {
-      setWarningMessage('The word buffer is empty. Add at least one word before displaying the list.');
+      setWarningMessage('The word wordBuffer is empty. Add at least one word before displaying the list.');
       return;
     }
   
@@ -93,20 +123,20 @@ const ClydeMenuScreen: React.FC = () => {
       setWarningMessage('No locations selected. Please select at least one location before displaying the list.');
       return;
     }
-    
+
     try
     {
       const response = await fetch('http://localhost:8080/display_records', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ buffer: wordBuffer, locations: activeLocations })
+        body: JSON.stringify({ wordBuffer: wordBuffer, locations: activeLocations, containsWord: containBuffer })
       });
 
       const data = await response.json();
-      
+  
       if (Array.isArray(data))
       {
-        navigate('/display-details', {state: {displayList: data, activeLocations, wordBuffer, count}});
+        navigate('/display-details', {state: {displayList: data, activeLocations, wordBuffer, count, containBuffer, inputQueue}});
       }
       else
       {
@@ -119,6 +149,17 @@ const ClydeMenuScreen: React.FC = () => {
       console.error('Error displaying list:', error);
       setWarningMessage('An error occurred while displaying the list.');
     }
+  };
+
+  const handleReset = () => {
+    setCount(0);
+    setWordBuffer([]);
+    setContainBuffer([]);
+    setInputQueue([]);
+    setShowBuffer(false);
+    setInputWord('');
+    setWarningMessage('');
+    recalculateCount(activeLocations, [], []);
   };
 
   return (
@@ -170,24 +211,37 @@ const ClydeMenuScreen: React.FC = () => {
           )}
 
           <div className="row text-center g-3">
-            <div className="col-md-3">
+            <div className="col-md-4">
               <button className="btn btn-success w-100 py-2 rounded-3 fw-bold" onClick={() => sendWordToBackend('add')}>
                 Add Word
               </button>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
               <button className="btn btn-outline-warning w-100 py-2 rounded-3 fw-bold" onClick={() => sendWordToBackend('restrict')}>
                 Restrict Word
               </button>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-4">
+              <button className="btn btn-primary w-100 py-2 rounded-3 fw-bold" onClick={() => sendWordToBackend('contains')}>
+                Contains Word
+              </button>
+            </div>
+          </div>
+
+          <div className="row text-center g-3 mt-3">
+            <div className="col-md-4">
               <button className="btn btn-info w-100 py-2 rounded-3 fw-bold text-dark" onClick={displayTheList}>
                 Display List
               </button>
             </div>
-            <div className="col-md-3">
-              <button className="btn btn-secondary w-100 py-2 rounded-3 fw-bold" onClick={() => navigate('/clyde-table', {state: {activeLocations: location.state?.activeLocations || [], wordBuffer, inputWord, count}})}>
+            <div className="col-md-4">
+              <button className="btn btn-secondary w-100 py-2 rounded-3 fw-bold" onClick={() => navigate('/clyde-table', { state: { activeLocations, wordBuffer, inputWord, count, containBuffer, inputQueue} })}>
                 Change Filter
+              </button>
+            </div>
+            <div className="col-md-4">
+              <button className="btn btn-danger w-100 py-2 rounded-3 fw-bold" onClick={handleReset}>
+                Reset
               </button>
             </div>
           </div>
@@ -197,7 +251,14 @@ const ClydeMenuScreen: React.FC = () => {
       <div className="card bg-white border-success text-dark shadow-sm rounded-4 w-100 mb-4 fade-slide-in" style={{ maxWidth: '900px' }}>
         <div className="card-body">
           <p className="mb-1">Total records : <span className="fw-bold">{count}</span></p>
-          {showBuffer && (<p className="mb-0">Current word buffer : <strong>{wordBuffer.join(', ')}</strong></p>)}
+          {showBuffer && (
+            <p className="mb-0">
+              Current Word Buffer : 
+              <strong>
+                {inputQueue.length > 0 ? ` ${inputQueue.join(', ')}` : ''}
+              </strong>
+            </p>
+          )}
         </div>
       </div>
     </div>

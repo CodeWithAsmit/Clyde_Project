@@ -59,7 +59,9 @@ const ClydeTableScreen: React.FC = () => {
     navigate('/clyde-menu', { state: { 
       activeLocations,
       wordBuffer: location.state?.wordBuffer || [],
-      count: location.state?.count || 0
+      count: location.state?.count || 0,
+      containBuffer: location.state?.containBuffer || [],
+      inputQueue: location.state?.inputQueue || []
     }});
   };
 

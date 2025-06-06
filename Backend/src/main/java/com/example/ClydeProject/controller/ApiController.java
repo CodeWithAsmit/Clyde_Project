@@ -5,8 +5,6 @@ import com.example.ClydeProject.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,43 +16,17 @@ public class ApiController
     @Autowired
     private ApiService apiService;
 
-    private static class WordsAndLocations
-    {
-        final List<String> words;
-        final List<String> locations;
-
-        WordsAndLocations(List<String> words, List<String> locations)
-        {
-            this.words = words;
-            this.locations = locations;
-        }
-    }
-
     @PostMapping("/get_count_for_words")
     public ResponseEntity<Map<String, Object>> getWordCount(@RequestBody Map<String, Object> requestBody)
     {        
         try
-        {
-            String newWord = null;
-            
-            WordsAndLocations extracted = extractWordsAndLocations(requestBody);
-            List<String> words = extracted.words;
-            List<String> locations = extracted.locations;
-            
-            if (requestBody.get("word") instanceof String)
-            {
-                newWord = (String) requestBody.get("word");
-            }
-            if (newWord != null)
-            {
-                words.add(newWord);
-            }
+        {   
+            List<String> words = extractList(requestBody, "wordBuffer");
+            List<String> locations = extractList(requestBody, "locations");
+            List<String> containsWord = extractList(requestBody, "containsWord");
 
-            int count = apiService.getCountForWords(words, locations);
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("count", count);
-            return ResponseEntity.ok(response);
+            int count = apiService.countMatchingRecords(words, containsWord, locations);
+            return ResponseEntity.ok(Map.of("count", count));
         }
         catch (Exception e)
         {
@@ -68,11 +40,11 @@ public class ApiController
     {
         try
         {
-            WordsAndLocations extracted = extractWordsAndLocations(requestBody);
-            List<String> words = extracted.words;
-            List<String> locations = extracted.locations;
+            List<String> words = extractList(requestBody, "wordBuffer");
+            List<String> locations = extractList(requestBody, "locations");
+            List<String> containsWord = extractList(requestBody, "containsWord");
 
-            List<List<String>> result = apiService.displayMasterTable(words, locations);
+            List<List<String>> result = apiService.displayMasterTable(words, containsWord, locations);
             return ResponseEntity.ok(result);
         }
         catch (Exception e)
@@ -82,32 +54,16 @@ public class ApiController
         }
     }
 
-    private WordsAndLocations  extractWordsAndLocations(Map<String, Object> requestBody)
+    private List<String> extractList(Map<String, Object> map, String key)
     {
-        List<String> words = new ArrayList<>();
-        List<String> locations = new ArrayList<>();
-
-        if (requestBody.get("buffer") instanceof List<?> bufferList)
+        if (map.get(key) instanceof List<?> list)
         {
-            for (Object item : bufferList)
-            {
-                if (item instanceof String str)
-                {
-                    words.add(str);
-                }
-            }
+            return list.stream()
+                       .filter(String.class::isInstance)
+                       .map(String.class::cast)
+                       .distinct()
+                       .toList();
         }
-
-        if (requestBody.get("locations") instanceof List<?> locationsList)
-        {
-            for (Object item : locationsList)
-            {
-                if (item instanceof String str)
-                {
-                    locations.add(str);
-                }
-            }
-        }
-        return new WordsAndLocations(words, locations);
+        return List.of();
     }
 }

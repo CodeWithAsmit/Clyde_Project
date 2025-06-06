@@ -118,7 +118,9 @@ const DisplayDetailsScreen: React.FC = () => {
                     state: { 
                         activeLocations: location.state?.activeLocations || [],
                         wordBuffer: location.state?.wordBuffer || [],
-                        count: location.state?.count || 0
+                        count: location.state?.count || 0,
+                        containBuffer: location.state?.containBuffer || [],
+                        inputQueue: location.state?.inputQueue || []
                     }
                 })}
                 style={{ padding: '0.5rem 2.2rem', fontSize: '1.2rem' }}>

@@ -6,6 +6,7 @@ import com.example.ClydeProject.repo.CustomQueryRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class ApiService
@@ -22,25 +23,41 @@ public class ApiService
     @Autowired
     private FormattedDisplayService formattedDisplayService;
 
-    public int getCountForWords(List<String> words, List<String> locations)
+    public int countMatchingRecords(List<String> words, List<String> containsWord, List<String> locations)
     {
         int totalCount = 0;
+
         for (String location : locations)
         {
             FilterMappingService.FilterConfig filterConfig = configService.getFilterConfig(location);
 
-            if (filterConfig != null)
+            if (filterConfig == null)
             {
-                String dictionaryTable = mapTableName(filterConfig.getDictionaryTable());
-                String recnumTable = mapTableName(filterConfig.getRecnumTable());
-                List<Long> results = customQueryRepository.findRecNumRec(recnumTable, dictionaryTable, words);
-                totalCount += results.size();
+                continue;
+            }
+
+            String dictionaryTable = mapTableName(filterConfig.getDictionaryTable());
+            String recnumTable = mapTableName(filterConfig.getRecnumTable());
+            String masterTable = mapTableName(filterConfig.getMasterTable());
+
+            List<Map<String, Object>> locationResults = customQueryRepository.displayMasterTable(masterTable, recnumTable, dictionaryTable, words);
+
+            for (Map<String, Object> row : locationResults)
+            {
+                List<String> fieldValues = row.values().stream()
+                                              .filter(Objects::nonNull)
+                                              .map(Object::toString)
+                                              .toList();                                  
+                if (listContainsAllWords(fieldValues, containsWord))
+                {
+                    totalCount++;
+                }
             }
         }
         return totalCount;
     }
 
-    public List<List<String>> displayMasterTable(List<String> words, List<String> locations)
+    public List<List<String>> displayMasterTable(List<String> words, List<String> containsWord, List<String> locations)
     {
         List<List<String>> allFormattedResults = new ArrayList<>();
 
@@ -48,18 +65,51 @@ public class ApiService
         {
             FilterMappingService.FilterConfig filterConfig = configService.getFilterConfig(location);
 
-            if (filterConfig != null)
+            if (filterConfig == null)
             {
-                String dictionaryTable = mapTableName(filterConfig.getDictionaryTable());
-                String recnumTable = mapTableName(filterConfig.getRecnumTable());
-                String masterTable = mapTableName(filterConfig.getMasterTable());
+                continue;
+            }
+            
+            String dictionaryTable = mapTableName(filterConfig.getDictionaryTable());
+            String recnumTable = mapTableName(filterConfig.getRecnumTable());
+            String masterTable = mapTableName(filterConfig.getMasterTable());
 
-                List<Map<String, Object>> locationResults = customQueryRepository.displayMasterTable(masterTable, recnumTable, dictionaryTable, words);
-                List<List<String>> formattedLines = formattedDisplayService.generateFormattedDisplayLines(locationResults, filterConfig, fieldMappingService);        
-                allFormattedResults.addAll(formattedLines);
+            List<Map<String, Object>> locationResults = customQueryRepository.displayMasterTable(masterTable, recnumTable, dictionaryTable, words);
+
+            List<List<String>> formattedLines = formattedDisplayService.generateFormattedDisplayLines(locationResults, filterConfig, fieldMappingService);        
+            
+            for (List<String> line : formattedLines)
+            {
+                if (listContainsAllWords(line, containsWord))
+                {
+                    allFormattedResults.add(line);
+                }
             }
         }
         return allFormattedResults;
+    }
+
+    private boolean listContainsAllWords(List<String> dataRow, List<String> requiredWords)
+    {
+        for (String word : requiredWords)
+        {
+            boolean found = false;
+
+            for (String field : dataRow)
+            {
+                if (field != null && field.contains(word))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private String mapTableName(String configTableName)
